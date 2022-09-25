@@ -1,0 +1,7 @@
+require java
+require stdout
+
+import java:wyvern.tools.tests.examples.support.WindowFX.wfx
+
+wfx.addButton()
+wfx.goRun()

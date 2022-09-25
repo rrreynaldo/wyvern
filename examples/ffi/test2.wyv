@@ -1,0 +1,9 @@
+require java
+require stdout
+
+import java:wyvern.tools.tests.examples.support.WindowFX.wfx
+
+wfx.addButton("A BUTTON NAME HERE")
+wfx.addLabel("HI I AM A LABEL", 0, -100)
+wfx.setTitle("THIS TITLE SHOULD APPEAR ON TOP")
+wfx.goRun()
