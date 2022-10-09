@@ -1,7 +1,6 @@
 require java
 require stdout
 
-import java:wyvern.tools.tests.examples.support.WindowFX.wfx
+import java:wyvern.stdlib.support.CallToFX.cfx
 
-wfx.addButton()
-wfx.goRun()
+cfx.goRun()

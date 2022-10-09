@@ -1,34 +1,60 @@
 package wyvern.tools.tests.examples.support;
 
-import static wyvern.tools.tests.examples.support.WindowFX.wfx;
+import wyvern.stdlib.support.CallToFX;
+
+import wyvern.stdlib.support.OFXType;
+import wyvern.stdlib.support.ObjectFX;
 
 public class runTest {
 
+    static CallToFX cfx = CallToFX.cfx;
+    static ObjectFX ofx = ObjectFX.ofx;
+
     public static void main(String[] args) {
-//        test1();
+        test1();
 //        test2();
-        test3();
+//        test3();
     }
 
     public static void test1() {
-        wfx.addButton();
-        wfx.goRun();
-    }
+        ObjectFX label = new ObjectFX();
+        label.setType(OFXType.LABEL);
+        label.setText("1");
+        label.setTranslateYY(-30);
+        label.setTranslateXX(-100);
+        label.setWidth(150);
+        label.setHeight(20);
+        label.setEditable(false);
+        cfx.addObjectFX(label);
 
-    public static void test2() {
-        wfx.addButton("A BUTTON NAME HERE");
-        wfx.addLabel("HI I AM A LABEL", 0, -100);
-        wfx.setTitle("THIS TITLE SHOULD APPEAR ON TOP");
-        wfx.goRun();
+        ObjectFX field = new ObjectFX();
+        field.setType(OFXType.FIELD);
+        field.setText("2");
+        field.setTranslateYY(-30);
+        field.setTranslateXX(150);
+        field.setWidth(150);
+        field.setHeight(20);
+        field.setEditable(false);
+        cfx.addObjectFX(field);
 
-    }
+        ObjectFX button1 = new ObjectFX();
+        button1.setType(OFXType.BUTTON);
+        button1.setText("Change1");
+        button1.setTranslateXX(-100);
+        button1.setEditable(false);
 
-    public static void test3() {
-        wfx.addButton("CLICK ME", 50, 0);
-        wfx.setTitle("SOME TEXT FOR THE TITLE HERE");
-        wfx.addLabel("NEW LABEL HERE", 10, -100);
-        wfx.setSceneWidth(750);
-        wfx.setSceneHeight(750);
-        wfx.goRun();
+        cfx.addObjectFX(button1);
+
+        ObjectFX button2 = new ObjectFX();
+        button2.setType(OFXType.BUTTON);
+        button2.setText("Change2");
+        button2.setTranslateXX(150);
+        button2.setEditable(false);
+        cfx.addObjectFX(button2);
+
+        cfx.bindButton(button1, label, "Text From Button Click");
+        cfx.bindButton(button2, field, "Change some text");
+
+        cfx.invoke("Window 1", 500, 250);
     }
 }

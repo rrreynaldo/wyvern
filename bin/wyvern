@@ -17,7 +17,7 @@ WYVERN_HOME=`dirname "$PRG"`/..
 # make it fully qualified
 WYVERN_HOME=`cd "$WYVERN_HOME" > /dev/null && pwd`
 CP_HOME="$WYVERN_HOME"
-JAVAFX_LIB_PATH="$WYVERN_HOME/tools/lib/javafx-sdk-19/lib"
+JAVAFX_LIB_PATH="$WYVERN_HOME/tools/lib/javafx-sdk/lib"
 JAVAFX_LIB_PATH_ALL="$JAVAFX_LIB_PATH/javafx.base.jar:$JAVAFX_LIB_PATH/javafx.controls.jar:$JAVAFX_LIB_PATH/javafx.fxml.jar:$JAVAFX_LIB_PATH/javafx.graphics.jar:$JAVAFX_LIB_PATH/javafx.media.jar:$JAVAFX_LIB_PATH/javafx.swing.jar:$JAVAFX_LIB_PATH/javafx-swt.jar:$JAVAFX_LIB_PATH/javafx.web.jar"
 
 # for cygwin, convert the classpath home directory to Windows form

@@ -32,6 +32,9 @@ public final class Interpreter {
      */
     public static void main(String[] args) {
         // check if at least one argument is supplied.
+        for (String a : args) {
+            System.out.println("Args: " + a);
+        }
         if (args.length < 1) {
             // prompt usage message if the number of arguments is less than one.
             System.err.println("usage: wyvern <filename> <arguments>");
@@ -43,6 +46,7 @@ public final class Interpreter {
         }
         String filename = args[0];
         Path filepath = Paths.get(filename);
+        System.out.println("File path: " + filepath.toString());
 
         // check if file is readable.
         if (!Files.isReadable(filepath)) {
@@ -76,6 +80,7 @@ public final class Interpreter {
 
             // go to WYVERN_ROOT/stdlib
             wyvernPath += "/stdlib/";
+            System.out.println("wPath: " + wyvernPath);
 
             // sanity check: is the wyvernPath a valid directory?
             if (!Files.isDirectory(Paths.get(wyvernPath))) {
@@ -100,6 +105,7 @@ public final class Interpreter {
             program.typecheckNoAvoidance(ctx, null);
             TailCallVisitor.annotate(program);
             program.interpret(Globals.getStandardEvalContext());
+            System.out.println("Exit success");
         /*} catch (ParseException e) {
             System.err.println("Parse error: " + e.getMessage());*/
         } catch (ToolError e) {

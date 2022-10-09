@@ -1,7 +1,7 @@
 require java
 require stdout
 
-import java:wyvern.tools.tests.examples.support.WindowFX.wfx
+import java:wyvern.stdlib.support.WindowFX.wfx
 
 wfx.addButton("CLICK ME", 50, 0)
 wfx.setTitle("SOME TEXT FOR THE TITLE HERE")

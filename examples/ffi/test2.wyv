@@ -1,7 +1,7 @@
 require java
 require stdout
 
-import java:wyvern.tools.tests.examples.support.WindowFX.wfx
+import java:wyvern.stdlib.support.WindowFX.wfx
 
 wfx.addButton("A BUTTON NAME HERE")
 wfx.addLabel("HI I AM A LABEL", 0, -100)
