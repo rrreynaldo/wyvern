@@ -1,0 +1,72 @@
+module def Window(java: Java) :  wyvern.util.gui.TWindow
+
+import java:wyvern.stdlib.support.CallToFX.cfx
+import wyvern.collections.ArrayList
+import wyvern.collections.Iterator
+import wyvern.util.gui.TObjectFX
+import wyvern.util.gui.EffectFX
+
+effect ReadObject = {EffectFX.ReadObject}
+effect WriteObject = {EffectFX.WriteObject}
+
+type ArrayList = ArrayList.ArrayList
+
+var DEFAULT_LABEL_NAME : String = "Label"
+var DEFAULT_BUTTON_NAME : String = "Button"
+var DEFAULT_FIELD_NAME : String = "Text Field"
+
+var stageTitle : String = ""
+var sceneHeight : Int = 250
+var sceneWidth : Int = 500
+
+var objectList : ArrayList[TObjectFX] = ArrayList.ArrayList[TObjectFX](0)
+
+def addOFX(ofx : TObjectFX) : {WriteObject} Unit
+    objectList.add(ofx)
+
+def invokeWindow() : Unit
+    cfx.invokeWindow(stageTitle, sceneWidth, sceneHeight)
+
+def generate() : Unit
+    invokeWindow()
+    val obFXIter : Iterator[TObjectFX] = objectList.iterator()
+    def loop():Unit
+        if (obFXIter.hasNext())
+            val tempFX : TObjectFX = obFXIter.next().get()
+            if (tempFX.getText() == "DEFAULT")
+                val fxType : Int = tempFX.getObjectType()
+                if (fxType == 1)
+                    tempFX.setText(DEFAULT_LABEL_NAME)
+                  elif (fxType == 2)
+                    tempFX.setText(DEFAULT_FIELD_NAME)
+                  elif (fxType == 3)
+                    tempFX.setText(DEFAULT_BUTTON_NAME)
+            tempFX.invokeObject()
+            loop()
+    loop()
+    goLaunch()
+
+def goLaunch() : Unit
+    cfx.goLaunch()
+
+def setTitle(title : String) : {WriteObject} Unit
+    stageTitle = title
+
+def setSceneHeight(height : Int) : {WriteObject} Unit
+    sceneHeight = height
+
+def setSceneWidth(width : Int) : {WriteObject} Unit
+    sceneWidth = width
+
+def setSceneSize(width : Int, height : Int) : {WriteObject} Unit
+    setSceneHeight(height)
+    setSceneWidth(width)
+
+def getTitle() : {ReadObject} String
+    stageTitle
+
+def getSceneHeight() : {ReadObject} Int
+    sceneHeight
+
+def getSceneWidth() : {ReadObject} Int
+    sceneWidth

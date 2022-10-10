@@ -1,0 +1,130 @@
+module def ObjectFX(java: Java) : wyvern.util.gui.TObjectFX
+
+import java:wyvern.stdlib.support.ObjectFX.ofx
+import java:wyvern.stdlib.support.CallToFX.cfx
+import wyvern.util.gui.TObjectFX
+import wyvern.util.gui.EffectFX
+
+effect CreateLabel = {EffectFX.CreateLabel}
+effect CreateField = {EffectFX.CreateField}
+effect CreateButton = {EffectFX.CreateButton}
+
+effect ReadObject = {EffectFX.ReadObject}
+effect WriteObject = {EffectFX.WriteObject}
+effect LinkObject = {EffectFX.LinkObject}
+
+// objectType encoding
+// 1 -> Label
+// 2 -> Field
+// 3 -> Button
+
+// Variable declaration for ObjectFX module
+var id : Int = -1
+var objectType : Int = -1
+var text : String = "DEFAULT"
+var editable : Boolean = false
+var translateXX : Int = -1
+var translateYY : Int = -1
+var width : Int = -1
+var height : Int = -1
+var ofxBinding : Int = -1
+var ofxStringBinding : String = "NONE"
+
+def getOFX() : {ReadObject} Dyn
+    ofx
+
+def getId() : {ReadObject} Int
+    id
+
+def getObjectType() : {ReadObject} Int
+    objectType
+
+def getText() : {ReadObject} String
+    text
+
+def getEditable() : {ReadObject} Boolean
+    editable
+
+def getTranslateX() : {ReadObject} Int
+    translateXX
+
+def getTranslateY() : {ReadObject} Int
+    translateYY
+
+def getWidth() : {ReadObject} Int
+    width
+
+def getHeight() : {ReadObject} Int
+    height
+
+def getBinding() : {ReadObject} Int
+    ofxBinding
+
+def getStringBinding() : {ReadObject} String
+    ofxStringBinding
+
+def setId(idInp : Int) : {WriteObject} Unit
+    id = idInp
+
+def setText(textInp : String) : {WriteObject} Unit
+    text = textInp
+
+def setEditable(editableInp : Boolean) : {WriteObject} Unit
+    editable = editableInp
+
+def setTranslateX(xx : Int) : {WriteObject} Unit
+    translateXX = xx
+
+def setTranslateY(yy : Int) : {WriteObject} Unit
+    translateYY = yy
+
+def setWidth(widthInp : Int) : {WriteObject} Unit
+    width = widthInp
+
+def setHeight(heightInp : Int) : {WriteObject} Unit
+    height = heightInp
+
+def setSize(width : Int, height : Int) : {WriteObject} Unit
+    setWidth(width)
+    setHeight(height)
+
+def setBinding(ofx : Int) : {WriteObject} Unit
+    ofxBinding = ofx
+
+def setStringBinding(ofxString : String) : {WriteObject} Unit
+    ofxStringBinding = ofxString
+
+def createLabel() : {CreateLabel, ReadObject} Unit
+    val uniqId : Int = getIdCounter()
+    id = uniqId
+    objectType = 1
+
+def createField() : {CreateField, ReadObject} Unit
+    val uniqId : Int = getIdCounter()
+    id = uniqId
+    objectType = 2
+
+def createButton() : {CreateButton, ReadObject} Unit
+    val uniqId : Int = getIdCounter()
+    id = uniqId
+    objectType = 3
+
+def invokeObject() : Unit
+    var tWidth : Int = getWidth()
+    var tHeight : Int = getHeight()
+    if (objectType == 2)
+        if(tWidth == -1)
+            tWidth = 150
+        if(tHeight == -1)
+            tHeight = 30
+    cfx.invokeObject(id, objectType, text, editable, translateXX, translateYY, tWidth, tHeight, ofxBinding, ofxStringBinding)
+
+// Get a unique id int from java static variable
+def getIdCounter() : Int
+    cfx.getIdCounter()
+
+def bindButton(ofx : TObjectFX, text : String) : {WriteObject} Unit
+    if (getObjectType() == 3)
+        if (ofx.getObjectType() != 3)
+            setBinding(ofx.getId())
+            setStringBinding(text)

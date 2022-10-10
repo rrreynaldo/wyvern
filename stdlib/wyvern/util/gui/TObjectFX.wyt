@@ -1,0 +1,39 @@
+resource type TObjectFX
+    effect CreateLabel
+    effect CreateField
+    effect CreateButton
+
+    effect ReadObject
+    effect WriteObject
+    effect LinkObject
+
+    def getOFX() : {this.ReadObject} Dyn
+    def getIdCounter() : Int
+    def invokeObject() : Unit
+    def bindButton(ofx : TObjectFX, text : String) : {this.WriteObject} Unit
+
+    def getId() : {this.ReadObject} Int
+    def getObjectType() : {this.ReadObject} Int
+    def getText() : {this.ReadObject} String
+    def getEditable() : {this.ReadObject} Boolean
+    def getTranslateX() : {this.ReadObject} Int
+    def getTranslateY() : {this.ReadObject} Int
+    def getWidth() : {this.ReadObject} Int
+    def getHeight() : {this.ReadObject} Int
+    def getBinding() : {this.ReadObject} Int
+    def getStringBinding() : {this.ReadObject} String
+
+    def setId(idInp : Int) : {this.WriteObject} Unit
+    def setText(textInp : String) : {this.WriteObject} Unit
+    def setEditable(editableInp : Boolean) : {this.WriteObject} Unit
+    def setTranslateX(xx : Int) : {this.WriteObject} Unit
+    def setTranslateY(yy : Int) : {this.WriteObject} Unit
+    def setWidth(widthInp : Int) : {this.WriteObject} Unit
+    def setHeight(heightInp : Int) : {this.WriteObject} Unit
+    def setSize(width : Int, height : Int) : {this.WriteObject} Unit
+    def setBinding(ofx : Int) : {this.WriteObject} Unit
+    def setStringBinding(ofxString : String) : {this.WriteObject} Unit
+
+    def createLabel() : {this.CreateLabel, this.ReadObject} Unit
+    def createField() : {this.CreateField, this.ReadObject} Unit
+    def createButton() : {this.CreateButton, this.ReadObject} Unit

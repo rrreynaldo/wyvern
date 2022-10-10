@@ -1,0 +1,43 @@
+require java
+
+import wyvern.util.gui.Window
+import wyvern.util.gui.ObjectFX
+
+val m1 = Window(java)
+m1.setTitle("Title of the Window")
+m1.setSceneHeight(500)
+m1.setSceneWidth(700)
+
+val m2 = ObjectFX(java)
+m2.createLabel()
+m2.setEditable(false)
+m2.setText("Editable")
+m2.setTranslateY(-100)
+m2.setTranslateX(-100)
+
+val m3 = ObjectFX(java)
+m3.createLabel()
+m3.setEditable(false)
+m3.setText("Uneditable")
+m3.setTranslateY(-50)
+m3.setTranslateX(-100)
+
+val m4 = ObjectFX(java)
+m4.createField()
+m4.setEditable(true)
+m4.setText("Try to edit me")
+m4.setTranslateY(-100)
+m4.setTranslateX(100)
+
+val m5 = ObjectFX(java)
+m5.createField()
+m5.setEditable(false)
+m5.setText("Try to edit me")
+m5.setTranslateY(-50)
+m5.setTranslateX(100)
+
+m1.addOFX(m2)
+m1.addOFX(m3)
+m1.addOFX(m4)
+m1.addOFX(m5)
+m1.generate()

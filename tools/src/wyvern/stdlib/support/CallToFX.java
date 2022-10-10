@@ -35,10 +35,10 @@ public class CallToFX extends Application {
         for (ObjectFX obfx : objectList) {
             if (obfx.getType() == OFXType.BUTTON) {
                 Button button = obfx.createButton();
-                if (obfx.getBinding() != null) {
+                if (obfx.getBinding() != -1) {
                     ObservableList<Node> objToFront = lay.getChildren();
                     for (Node sBinded : objToFront) {
-                        if (Integer.parseInt(sBinded.getId()) == obfx.getBinding().getId()) {
+                        if (Integer.parseInt(sBinded.getId()) == obfx.getBinding()) {
                             if (sBinded.getStyleClass().contains("label")) {
                                 Label lbl = (Label) sBinded;
                                 button.setOnMouseClicked((event) -> {
@@ -85,37 +85,46 @@ public class CallToFX extends Application {
         sceneWidth = width;
     }
 
-    public void addObjectFX(Object obj) {
-        System.out.println("SUCCESSS");
-        System.out.println(obj);;
-        ObjectFX ofx = (ObjectFX) obj;
-        System.out.println("SUCCESS");
-        System.out.println(ofx.getText());
-        System.out.println(ofx.getId());
-        System.out.println(ofx.getTranslateXX());
-        objectList.add(ofx);
-    }
-
-    public void invoke(String title, int width, int height) {
-        setSceneHeight(height);
-        setSceneWidth(width);
-        setTitle(title);
+    public void goLaunch() {
+        //objFXDebug();
         launch();
     }
 
-    public void goRun() {
-        launch();
+    public void objFXDebug() {
+        for (ObjectFX ofx : objectList) {
+            System.out.println(ofx);
+        }
     }
 
-    public void testParsingAL(ArrayList<ObjectFX> val) {
-        ArrayList<ObjectFX> testVal = val;
-        System.out.println("WENT HERERERERERE");
-        System.out.println(testVal);
-        return;
-    }
-
-    public void bindButton(ObjectFX button, ObjectFX target, String name) {
+    public void bindButton(ObjectFX button, int target, String name) {
         button.setBinding(target);
         button.setTextBinding(name);
+    }
+
+    public void invokeWindow(String title, int width, int height) {
+        setTitle(title);
+        setSceneWidth(width);
+        setSceneHeight(height);
+    }
+
+    public void invokeObject(int id, int objectType, String text, boolean editable,
+                             int translateXX, int translateYY, int width, int height, int binding, String strBinding) {
+        OFXType parseOFX = null;
+        if (objectType == 1) {
+            parseOFX = OFXType.LABEL;
+        } else if (objectType == 2) {
+            parseOFX = OFXType.FIELD;
+        } else if (objectType == 3) {
+            parseOFX = OFXType.BUTTON;
+        }
+        ObjectFX tempFX = new ObjectFX(id, parseOFX, text, editable, translateXX, translateYY,
+                                        width, height, binding, strBinding);
+        objectList.add(tempFX);
+    }
+
+    public int getIdCounter() {
+        int cIdVal = idCounter;
+        idCounter++;
+        return cIdVal;
     }
 }

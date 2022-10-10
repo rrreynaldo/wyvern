@@ -1,0 +1,11 @@
+module EffectFX
+
+// Effect for Creating object
+effect CreateLabel = {system.FFI}
+effect CreateField = {system.FFI}
+effect CreateButton = {system.FFI}
+
+// Effect for interaction with the object
+effect ReadObject = {system.FFI}
+effect WriteObject = {system.FFI}
+effect LinkObject = {system.FFI}
