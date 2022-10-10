@@ -1,0 +1,89 @@
+module def Button(java: Java) : wyvern.util.gui.TButton
+
+import java:wyvern.stdlib.support.ObjectFX.ofx
+import java:wyvern.stdlib.support.CallToFX.cfx
+import wyvern.util.gui.EffectFX
+
+effect ReadObject = {EffectFX.ReadObject}
+effect WriteObject = {EffectFX.WriteObject}
+effect LinkObject = {EffectFX.LinkObject}
+
+// Variable declaration for ObjectFX module
+var id : Int = cfx.getIdCounter()
+var objectType : Int = 3
+var text : String = "DEFAULT"
+var translateXX : Int = -1
+var translateYY : Int = -1
+var width : Int = -1
+var height : Int = -1
+var ofxBinding : Int = -1
+var ofxStringBinding : String = "NONE"
+
+def getOFX() : {ReadObject} Dyn
+    ofx
+
+def getId() : {ReadObject} Int
+    id
+
+def getObjectType() : {ReadObject} Int
+    objectType
+
+def getText() : {ReadObject} String
+    text
+
+def getTranslateX() : {ReadObject} Int
+    translateXX
+
+def getTranslateY() : {ReadObject} Int
+    translateYY
+
+def getWidth() : {ReadObject} Int
+    width
+
+def getHeight() : {ReadObject} Int
+    height
+
+def getBinding() : {ReadObject} Int
+    ofxBinding
+
+def getStringBinding() : {ReadObject} String
+    ofxStringBinding
+
+def setText(textInp : String) : {WriteObject} Unit
+    text = textInp
+
+def setTranslateX(xx : Int) : {WriteObject} Unit
+    translateXX = xx
+
+def setTranslateY(yy : Int) : {WriteObject} Unit
+    translateYY = yy
+
+def setWidth(widthInp : Int) : {WriteObject} Unit
+    width = widthInp
+
+def setHeight(heightInp : Int) : {WriteObject} Unit
+    height = heightInp
+
+def setSize(width : Int, height : Int) : {WriteObject} Unit
+    setWidth(width)
+    setHeight(height)
+
+def setBinding(ofx : Int) : {WriteObject} Unit
+    ofxBinding = ofx
+
+def setStringBinding(ofxString : String) : {WriteObject} Unit
+    ofxStringBinding = ofxString
+
+def invokeObject() : {WriteObject} Unit
+    var tWidth : Int = getWidth()
+    var tHeight : Int = getHeight()
+    cfx.invokeObject(id, objectType, text, false, translateXX, translateYY, tWidth, tHeight, ofxBinding, ofxStringBinding)
+
+// Get a unique id int from java static variable
+def getIdCounter() : {ReadObject} Int
+    cfx.getIdCounter()
+
+def bindButton(ofx : Dyn, text : String) : Unit
+    if (ofx.getObjectType() != 3)
+        setBinding(ofx.getId())
+        setStringBinding(text)

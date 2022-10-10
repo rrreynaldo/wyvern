@@ -109,6 +109,7 @@ public class CallToFX extends Application {
 
     public void invokeObject(int id, int objectType, String text, boolean editable,
                              int translateXX, int translateYY, int width, int height, int binding, String strBinding) {
+        System.out.println(binding);
         OFXType parseOFX = null;
         if (objectType == 1) {
             parseOFX = OFXType.LABEL;

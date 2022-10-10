@@ -1,17 +1,18 @@
 require java
 
 import wyvern.util.gui.Window
-import wyvern.util.gui.Field
-import wyvern.util.gui.Button
+import wyvern.util.gui.ObjectFX
 
 val m1 = Window(java)
 
-val m2 = Field(java)
+val m2 = ObjectFX(java)
+m2.createField()
 m2.setEditable(false)
 m2.setText("Initial Text")
 m2.setTranslateY(-50)
 
-val m3 = Button(java)
+val m3 = ObjectFX(java)
+m3.createButton()
 m3.bindButton(m2, "From Binding")
 
 m1.addOFX(m2)

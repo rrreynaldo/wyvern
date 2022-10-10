@@ -19,9 +19,9 @@ var stageTitle : String = ""
 var sceneHeight : Int = 250
 var sceneWidth : Int = 500
 
-var objectList : ArrayList[TObjectFX] = ArrayList.ArrayList[TObjectFX](0)
+var objectList : ArrayList[Dyn] = ArrayList.ArrayList[Dyn](0)
 
-def addOFX(ofx : TObjectFX) : {WriteObject} Unit
+def addOFX(ofx : Dyn) : {WriteObject} Unit
     objectList.add(ofx)
 
 def invokeWindow() : Unit
@@ -29,10 +29,10 @@ def invokeWindow() : Unit
 
 def generate() : Unit
     invokeWindow()
-    val obFXIter : Iterator[TObjectFX] = objectList.iterator()
+    val obFXIter : Iterator[Dyn] = objectList.iterator()
     def loop():Unit
         if (obFXIter.hasNext())
-            val tempFX : TObjectFX = obFXIter.next().get()
+            val tempFX : Dyn = obFXIter.next().get()
             if (tempFX.getText() == "DEFAULT")
                 val fxType : Int = tempFX.getObjectType()
                 if (fxType == 1)

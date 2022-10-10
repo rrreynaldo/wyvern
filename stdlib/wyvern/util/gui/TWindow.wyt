@@ -4,7 +4,7 @@ resource type TWindow
     effect ReadObject
     effect WriteObject
 
-    def addOFX(ofx : TObjectFX) : {this.WriteObject} Unit
+    def addOFX(ofx : Dyn) : {this.WriteObject} Unit
 
     def invokeWindow() : Unit
     def generate() : Unit

@@ -1,0 +1,80 @@
+module def Field(java: Java) : wyvern.util.gui.TField
+
+import java:wyvern.stdlib.support.ObjectFX.ofx
+import java:wyvern.stdlib.support.CallToFX.cfx
+import wyvern.util.gui.EffectFX
+
+effect ReadObject = {EffectFX.ReadObject}
+effect WriteObject = {EffectFX.WriteObject}
+
+// Variable declaration for ObjectFX module
+var id : Int = cfx.getIdCounter()
+var objectType : Int = 2
+var text : String = "DEFAULT"
+var editable : Boolean = false
+var translateXX : Int = -1
+var translateYY : Int = -1
+var width : Int = -1
+var height : Int = -1
+
+def getOFX() : {ReadObject} Dyn
+    ofx
+
+def getId() : {ReadObject} Int
+    id
+
+def getObjectType() : {ReadObject} Int
+    objectType
+
+def getText() : {ReadObject} String
+    text
+
+def getEditable() : {ReadObject} Boolean
+    editable
+
+def getTranslateX() : {ReadObject} Int
+    translateXX
+
+def getTranslateY() : {ReadObject} Int
+    translateYY
+
+def getWidth() : {ReadObject} Int
+    width
+
+def getHeight() : {ReadObject} Int
+    height
+
+def setText(textInp : String) : {WriteObject} Unit
+    text = textInp
+
+def setEditable(editableInp : Boolean) : {WriteObject} Unit
+    editable = editableInp
+
+def setTranslateX(xx : Int) : {WriteObject} Unit
+    translateXX = xx
+
+def setTranslateY(yy : Int) : {WriteObject} Unit
+    translateYY = yy
+
+def setWidth(widthInp : Int) : {WriteObject} Unit
+    width = widthInp
+
+def setHeight(heightInp : Int) : {WriteObject} Unit
+    height = heightInp
+
+def setSize(width : Int, height : Int) : {WriteObject} Unit
+    setWidth(width)
+    setHeight(height)
+
+def invokeObject() : {WriteObject} Unit
+    var tWidth : Int = getWidth()
+    var tHeight : Int = getHeight()
+    if(tWidth == -1)
+        tWidth = 150
+    if(tHeight == -1)
+        tHeight = 30
+    cfx.invokeObject(id, objectType, text, editable, translateXX, translateYY, tWidth, tHeight, -1, "NONE")
+
+// Get a unique id int from java static variable
+def getIdCounter() : {ReadObject} Int
+    cfx.getIdCounter()
